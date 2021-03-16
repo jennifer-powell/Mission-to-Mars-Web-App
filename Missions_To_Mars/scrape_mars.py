@@ -5,15 +5,16 @@ import pandas as pd
 import requests
 
 import time
-def init_browser():
-    # @NOTE: Replace the path with your actual path to the chromedriver
-    executable_path = {"executable_path": "C:/Users/jenzy/Desktop/Web-Scraping-Challenge/Missions_To_Mars/chromedriver"}
-    return Browser("chrome", **executable_path, headless=False)
+# def init_browser():
+#     # @NOTE: Replace the path with your actual path to the chromedriver
+#     executable_path = {"executable_path": "C:/Users/jenzy/Desktop/Web-Scraping-Challenge/Missions_To_Mars/chromedriver"}
+#     return Browser("chrome", **executable_path, headless=False)
     
     
 def scrape():
     
-    browser = init_browser()
+    executable_path = {'executable_path': 'C:/Users/jenzy/Desktop/Web-Scraping-Challenge/Missions_To_Mars/chromedriver'}
+    browser = Browser('chrome', **executable_path)
 # Mars News
     url= 'https://mars.nasa.gov/news'
     browser.visit(url)
@@ -46,6 +47,7 @@ def scrape():
 #USGS Astrogeology
     base_url = 'https://astrogeology.usgs.gov'
     url = base_url + '/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
     html = browser.html
     soup = bs(html, 'html.parser')
     items = soup.find_all('div', class_='item')
@@ -55,6 +57,7 @@ def scrape():
         urls.append(base_url + item.find('a')['href'])
         name.append(item.find('h3').text.strip())
     
+    browser.visit(urls[0])
     html = browser.html
     soup = bs(html, 'html.parser')
     oneurl = base_url+soup.find('img',class_='wide-image')['src']
@@ -75,7 +78,7 @@ def scrape():
 
     mars_info = {
         "title": title,
-        "paragrpah": paragraph,
+        "paragraph": paragraph,
         "featured_image_url": featured_image_url,
         "tables": tables,
         "name": name,
@@ -84,8 +87,4 @@ def scrape():
 
     browser.quit()
 
-    # Return results
     return mars_info
-
-# if __name__ == '__main__':
-#     scrape()
