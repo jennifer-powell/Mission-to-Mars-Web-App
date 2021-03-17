@@ -5,16 +5,16 @@ import pandas as pd
 import requests
 
 import time
-# def init_browser():
-#     # @NOTE: Replace the path with your actual path to the chromedriver
-#     executable_path = {"executable_path": "C:/Users/jenzy/Desktop/Web-Scraping-Challenge/Missions_To_Mars/chromedriver"}
-#     return Browser("chrome", **executable_path, headless=False)
+def init_browser():
+     
+    executable_path = {"executable_path": "C:/Users/jenzy/Desktop/Web-Scraping-Challenge/Missions_To_Mars/chromedriver"}
+    return Browser("chrome", **executable_path)
     
     
 def scrape():
     
-    executable_path = {'executable_path': 'C:/Users/jenzy/Desktop/Web-Scraping-Challenge/Missions_To_Mars/chromedriver'}
-    browser = Browser('chrome', **executable_path)
+    
+    browser = init_browser()
 # Mars News
     url= 'https://mars.nasa.gov/news'
     browser.visit(url)
@@ -30,6 +30,7 @@ def scrape():
 #JPL Featured Space Image
     jplurl= 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
     browser.visit(jplurl)
+    # time.sleep(1)
     button= browser.find_by_css('button.btn.btn-outline-light')
     button.click()
     html = browser.html
@@ -40,14 +41,19 @@ def scrape():
 #Mars Facts
     url = 'https://space-facts.com/mars/'
     response = requests.get(url)
+    # time.sleep(1)
     soup = bs(response.text, 'html.parser')
     tables = pd.read_html(url)
-   
+    df = tables[0]
+    df.columns = ['Fact', 'Value']
+    df['Fact'] = df['Fact'].str.replace(':', '')
+    html_table = df.to_html()
 
 #USGS Astrogeology
     base_url = 'https://astrogeology.usgs.gov'
     url = base_url + '/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
+    # time.sleep(1)
     html = browser.html
     soup = bs(html, 'html.parser')
     items = soup.find_all('div', class_='item')
@@ -80,9 +86,9 @@ def scrape():
         "title": title,
         "paragraph": paragraph,
         "featured_image_url": featured_image_url,
-        "tables": tables,
-        "name": name,
+        "html_table": html_table,
         "hemisphere_image_urls": hemisphere_image_urls
+        
     }
 
     browser.quit()
