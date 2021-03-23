@@ -29,5 +29,5 @@
     - Used Pymongo for CRUD applications for the database. 
     - Used Bootstrap to structure the HTML template.
 
-    - Mars is a facination planet to learn and explore!
+   ### Mars is a facination planet to learn and explore!
 
