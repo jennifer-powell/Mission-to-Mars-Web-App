@@ -5,11 +5,11 @@
   
 
 - ## Programs, Languages and Tools
-  - Use of: Jupyter Notebook, BeautifulSoup, Pandas, MongoDb, Splinter, Flask, Python, HTML Template
+  - Use of: Jupyter Notebook, BeautifulSoup, Pandas, MongoDB, Splinter, Flask, Python, HTML Template
 
 - ## File overview
   - ### Mission_To_Mars.ipynb
-    ##### This Jupyter NoteBook file scapes the various websites for certain data
+    ##### This Jupyter Notebook file scapes the various websites for certain data
     -The lasted news headline from: https://mars.nasa.gov/news
     -Retrieved the featured image from: https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars
     -Retrieved facts about Mars from: https://space-facts.com/mars
@@ -18,7 +18,7 @@
   - ### scrape_mars.py
     ##### This file converts the Jupyter Notebook into a Python script
   - ### app.py
-    ##### This file creates a route that will queryteh Mongo Database and pass the data intoan HTML tamplate to display the data. 
+    ##### This file creates a route that will query the Mongo Database and pass the data intoan HTML template to display the data. 
   - ### index.html
     ##### HTML file that takes the Mars data dictionary and display all of the data in the appropriate HTML elements
 
@@ -29,5 +29,5 @@
     - Used Pymongo for CRUD applications for the database. 
     - Used Bootstrap to structure the HTML template.
 
-   ### Mars is a fascinating planet to learn and explore!
+   ### Mars is a fascinating planet to learn about and explore!
 
