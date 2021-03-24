@@ -5,7 +5,7 @@
   
 
 - ## Programs, Languages and Tools
-  - Use of: Jupyter Notebook, BeautifulSoup, Pandas, MongoDb, Splinter, Flask, Python, HTMO Template
+  - Use of: Jupyter Notebook, BeautifulSoup, Pandas, MongoDb, Splinter, Flask, Python, HTML Template
 
 - ## File overview
   - ### Mission_To_Mars.ipynb
