@@ -1,4 +1,4 @@
-# Web-Scraping-Challenge
+# Mission-to-Mars-Web-App
 
 ## Overview
   - To build a web application that scrapes various websites for data related to the Mission to Mars and displays the information in a single HTML page. 
